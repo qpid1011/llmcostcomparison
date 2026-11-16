@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en" class="light-theme">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLM Cost Comparison (2026 Live) — API Token Price Index &amp; Monthly Savings Calculator</title>
+  <meta name="description" content="Real-time LLM API cost comparison across 25 providers (OpenAI, Anthropic, Google, DeepSeek, Groq, Cerebras, Together AI, Fireworks AI, DeepInfra, Baseten, SambaNova). Compare $/1M input, output &amp; 3:1 blended token prices and calculate monthly inference savings." />
+  <link rel="canonical" href="https://llmcostcomparison.com/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Dataset",
+        "name": "Live LLM Cost Comparison & API Token Pricing Index",
+        "description": "Normalized $/1M input token, $/1M output token, 3:1 blended token rates, and context window benchmarks across 25 Frontier Labs and Open-Weight Inference Clouds.",
+        "url": "https://llmcostcomparison.com/",
+        "keywords": [
+          "llm cost comparison",
+          "llm api pricing comparison",
+          "token cost calculator",
+          "deepseek api price",
+          "llama inference cost",
+          "claude vs gpt token pricing"
+        ],
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/json",
+          "contentUrl": "https://llmcostcomparison.com/llm_costs.json"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "LLMCostComparison.com — Monthly LLM Token Cost & Cloud Savings Calculator",
+        "url": "https://llmcostcomparison.com/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #0b1220;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --row-hover: rgba(56, 189, 248, 0.07);
+    }
+    html.light-theme, body.light-theme {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --accent: #0369a1;
+      --row-hover: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .text-accent { color: var(--accent); }
+    .text-muted { color: var(--text-muted); }
+    .fw-800 { font-weight: 800; }
+    .fw-900 { font-weight: 900; }
+    .fs-xs { font-size: 0.75rem; }
+    .fs-sm { font-size: 0.83rem; }
+
+    .acq-banner {
+      background: #fef9c3;
+      color: #0f172a;
+      border-bottom: 1px solid #eab308;
+      padding: 9px 20px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .acq-cta {
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid #0f172a;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.77rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .brand h1 { margin: 0; font-size: 1.24rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
+    .top-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+    /* High-contrast lime badge per global rule */
+    .lime-badge {
+      background: #d9f99d;
+      color: #1a2e05;
+      border: 1px solid #65a30d;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      display: inline-block;
+    }
+    html.light-theme .lime-badge, body.light-theme .lime-badge {
+      background: #d9f99d;
+      color: #1a2e05;
+      border-color: #65a30d;
+    }
+
+    .btn {
+      background: var(--surface-alt);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn-primary { background: #0369a1; color: #ffffff; border-color: #0369a1; }
+    html.light-theme .btn-primary, body.light-theme .btn-primary {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    .container { max-width: 1400px; margin: 22px auto 64px; padding: 0 20px; }
+    .hero { margin-bottom: 18px; }
+    .hero h2 { margin: 0 0 6px; font-size: 1.56rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
+    .hero p { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 11px;
+      margin-bottom: 20px;
+    }
+    .kcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 15px;
+    }
+    .kcard-lbl { font-size: 0.77rem; font-weight: 800; color: var(--text-muted); }
+    .kcard-val { font-size: 1.38rem; font-weight: 900; margin: 4px 0 2px; color: var(--text); }
+    .kcard-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+    .calc-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+    .calc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .preset-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .pill-btn {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .pill-btn:hover { border-color: var(--accent); }
+    .pill-btn.active {
+      background: #0369a1;
+      color: #ffffff;
+      border-color: #0369a1;
+    }
+    html.light-theme .pill-btn.active, body.light-theme .pill-btn.active {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    .calc-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .ctrl-input {
+      width: 100%;
+      padding: 8px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+    .ctrl-input::placeholder { color: var(--text-muted); opacity: 0.9; }
+
+    .calc-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .res-box {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+    }
+    .res-lbl { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); }
+    .res-val { font-size: 1.34rem; font-weight: 900; margin-top: 3px; color: var(--text); }
+    .res-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; }
+
+    .cloud-quote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 9px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+    }
+    .cquote {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .cquote-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+    .cquote-name { font-size: 0.81rem; font-weight: 800; color: var(--accent); text-decoration: none; }
+    .cquote-name:hover { text-decoration: underline; }
+    .cquote-cost { font-size: 1.12rem; font-weight: 900; margin: 4px 0 2px; color: var(--text); }
+    .cquote-model { font-size: 0.73rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .filter-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 15px;
+      margin-bottom: 12px;
+    }
+    .filter-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .search-input { width: 290px; max-width: 100%; }
+    .sort-select { width: auto; }
+    .pill-strip { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 820px;
+    }
+    th, td {
+      padding: 10px 13px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--text);
+    }
+    th {
+      background: var(--surface-alt);
+      font-size: 0.76rem;
+      font-weight: 800;
+      user-select: none;
+    }
+    th.sortable { cursor: pointer; }
+    th.sortable:hover { color: var(--accent); }
+    tr:hover td { background: var(--row-hover); }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.71rem;
+      font-weight: 800;
+    }
+    .b-open { background: #064e3b; color: #a7f3d0; border: 1px solid #10b981; }
+    html.light-theme .b-open, body.light-theme .b-open {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #10b981;
+    }
+    .b-prop { background: #312e81; color: #e0e7ff; border: 1px solid #6366f1; }
+    html.light-theme .b-prop, body.light-theme .b-prop {
+      background: #ede9fe;
+      color: #5b21b6;
+      border: 1px solid #8b5cf6;
+    }
+    .b-tier { background: #1e293b; color: #e2e8f0; border: 1px solid #64748b; }
+    html.light-theme .b-tier, body.light-theme .b-tier {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #94a3b8;
+    }
+    .b-save { background: #d9f99d; color: #1a2e05; border: 1px solid #65a30d; }
+    html.light-theme .b-save, body.light-theme .b-save {
+      background: #d9f99d;
+      color: #1a2e05;
+      border: 1px solid #65a30d;
+    }
+
+    .provider-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .provider-link:hover { text-decoration: underline; }
+
+    .faq-section {
+      margin-top: 26px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .faq-section h3 { margin-top: 0; font-size: 1.05rem; color: var(--text); }
+    .faq-item { font-size: 0.86rem; margin-bottom: 12px; color: var(--text); }
+    .faq-item:last-child { margin-bottom: 0; }
+
+    .footer {
+      margin-top: 26px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .hidden-stage { display: none !important; }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 90;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 630px;
+      width: 100%;
+      padding: 22px 24px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+    }
+    .modal-price-box {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      margin: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <div id="acq-top-banner" class="acq-banner hidden-stage">
+    <span>⚡ <strong>Turnkey Digital Asset Available:</strong> Acquire <code>LLMCostComparison.com</code> (Exact-Match Search Domain + Automated 6h Live Token Price Index &amp; Calculator).</span>
+    <button class="acq-cta" onclick="openModal(true)">View Turnkey Package ($1,488) →</button>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>🧮 LLMCostComparison<span class="text-accent">.com</span></h1>
+      <span id="live-pill-badge" class="lime-badge">NEW · LIVE 25 PROVIDERS</span>
+      <span id="updated-stamp" class="fs-xs text-muted fw-800">Syncing live token rates...</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn" onclick="exportCsv()">📥 Export CSV</button>
+      <button id="acq-nav-btn" class="btn btn-primary hidden-stage" onclick="openModal(true)">💼 Acquire ($1,488)</button>
+      <button id="theme-btn" class="btn" onclick="toggleTheme()">🌙 Dark</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Live LLM API Cost Comparison &amp; Monthly Token Savings Calculator</h2>
+      <p>Side-by-side <code>$/1M input</code>, <code>$/1M output</code>, and <code>3:1 blended</code> token pricing across Frontier Proprietary Labs and high-speed Open-Weight Inference Clouds (Groq, Cerebras, DeepInfra, Together AI, Fireworks AI, Baseten, SambaNova, Novita AI).</p>
+    </section>
+
+    <section class="kpi-grid">
+      <div class="kcard">
+        <div class="kcard-lbl">Curated Live Endpoints</div>
+        <div id="kpi-offers" class="kcard-val">-</div>
+        <div id="kpi-scanned" class="kcard-sub">From 3,600+ live catalog models</div>
+      </div>
+      <div class="kcard">
+        <div class="kcard-lbl">Providers &amp; Inference Clouds</div>
+        <div id="kpi-providers" class="kcard-val">-</div>
+        <div class="kcard-sub">Direct API &amp; OpenRouter verified</div>
+      </div>
+      <div class="kcard">
+        <div class="kcard-lbl">Lowest Fast 70B–8B Blended</div>
+        <div id="kpi-low-fast" class="kcard-val">-</div>
+        <div id="kpi-low-fast-sub" class="kcard-sub">3:1 input/output weighted</div>
+      </div>
+      <div class="kcard">
+        <div class="kcard-lbl">Open-Weight vs Frontier Spread</div>
+        <div id="kpi-spread" class="kcard-val">-</div>
+        <div class="kcard-sub">Typical monthly inference reduction</div>
+      </div>
+    </section>
+
+    <section class="calc-panel">
+      <div class="calc-header">
+        <div>
+          <strong class="fw-900">💰 Interactive Monthly LLM Token Cost &amp; Cloud Savings Calculator</strong>
+          <div class="fs-xs text-muted">30-day billing projection comparing Frontier Proprietary APIs against Open-Weight Inference Clouds</div>
+        </div>
+        <div class="preset-row">
+          <button class="pill-btn" onclick="applyWorkload(15, 3, 'Fast 70B-8B')">Startup RAG (15M In / 3M Out)</button>
+          <button class="pill-btn" onclick="applyWorkload(50, 15, 'Coding')">Coding Agent (50M In / 15M Out)</button>
+          <button class="pill-btn" onclick="applyWorkload(200, 50, 'Frontier Reasoning')">Scale SaaS (200M In / 50M Out)</button>
+          <button class="pill-btn" onclick="applyWorkload(1000, 250, 'Frontier Reasoning')">Enterprise (1B In / 250M Out)</button>
+        </div>
+      </div>
+
+      <div class="calc-controls">
+        <div class="field">
+          <label for="calc-in-m">Daily Input Tokens (Millions / day)</label>
+          <input id="calc-in-m" class="ctrl-input" type="number" min="0.1" step="1" value="50" oninput="updateCalculator()" />
+        </div>
+        <div class="field">
+          <label for="calc-out-m">Daily Output Tokens (Millions / day)</label>
+          <input id="calc-out-m" class="ctrl-input" type="number" min="0.1" step="1" value="15" oninput="updateCalculator()" />
+        </div>
+        <div class="field">
+          <label for="calc-tier">Workload / Model Tier</label>
+          <select id="calc-tier" class="ctrl-input" onchange="onTierChange()">
+            <option value="Frontier Reasoning" selected>Frontier Reasoning (120B+ / R1 / Sonnet / GPT-6)</option>
+            <option value="Coding">Coding &amp; Agentic Tool-Use</option>
+            <option value="Fast 70B-8B">Fast 70B–8B Production Chat</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="calc-prop-model">Proprietary Baseline Reference</label>
+          <select id="calc-prop-model" class="ctrl-input" onchange="updateCalculator()"></select>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="res-box">
+          <div class="res-lbl">Frontier Proprietary Monthly</div>
+          <div id="res-prop-mo" class="res-val">-</div>
+          <div id="res-prop-sub" class="res-sub">-</div>
+        </div>
+        <div class="res-box">
+          <div class="res-lbl">Lowest Inference Cloud Monthly</div>
+          <div id="res-cloud-mo" class="res-val">-</div>
+          <div id="res-cloud-sub" class="res-sub">-</div>
+        </div>
+        <div class="res-box">
+          <div class="res-lbl">Percentage &amp; Monthly Saved</div>
+          <div id="res-pct-saved" class="res-val">-</div>
+          <div id="res-mo-saved-sub" class="res-sub">-</div>
+        </div>
+        <div class="res-box">
+          <div class="res-lbl">Annualized Infrastructure Savings</div>
+          <div id="res-annual-saved" class="res-val">-</div>
+          <div id="res-tok-vol" class="res-sub">-</div>
+        </div>
+      </div>
+
+      <div class="fs-xs fw-800 text-muted" style="margin-bottom:8px;">Live Monthly Spend Across Open-Weight Inference Clouds (Same Daily Token Volume):</div>
+      <div id="cloud-quote-grid" class="cloud-quote-grid"></div>
+    </section>
+
+    <section class="filter-panel">
+      <div class="filter-top">
+        <div class="pill-strip">
+          <input id="flt-search" class="ctrl-input search-input" type="text" placeholder="Search Llama, DeepSeek, Claude, Qwen, Groq..." oninput="renderTable()" />
+          <select id="flt-tier" class="ctrl-input sort-select" onchange="renderTable()">
+            <option value="ALL">All Model Tiers</option>
+            <option value="Frontier Reasoning">Frontier Reasoning</option>
+            <option value="Coding">Coding</option>
+            <option value="Fast 70B-8B">Fast 70B–8B</option>
+            <option value="Embedding">Embedding</option>
+          </select>
+          <select id="flt-license" class="ctrl-input sort-select" onchange="renderTable()">
+            <option value="ALL">All Licenses (Prop + Open)</option>
+            <option value="Open-Weight">Open-Weight Models Only</option>
+            <option value="Proprietary">Proprietary Models Only</option>
+          </select>
+        </div>
+        <div class="pill-strip">
+          <label for="sort-select" class="fs-xs fw-800 text-muted">Sort by:</label>
+          <select id="sort-select" class="ctrl-input sort-select" onchange="onSortDropdown()">
+            <option value="blended_per_1m_usd:asc" selected>Blended $/1M (Lowest First)</option>
+            <option value="input_per_1m_usd:asc">Input $/1M (Lowest First)</option>
+            <option value="output_per_1m_usd:asc">Output $/1M (Lowest First)</option>
+            <option value="context_tokens:desc">Context Window (Largest First)</option>
+            <option value="blended_per_1m_usd:desc">Blended $/1M (Highest First)</option>
+          </select>
+          <span id="row-count-lbl" class="fs-xs fw-800 text-muted">0 models</span>
+        </div>
+      </div>
+      <div id="provider-pills" class="pill-strip"></div>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Provider &amp; Category</th>
+            <th>Model &amp; Family</th>
+            <th>Tier &amp; License</th>
+            <th class="sortable" onclick="toggleSort('context_tokens')">Context <span id="sort-ind-context_tokens"></span></th>
+            <th class="sortable" onclick="toggleSort('input_per_1m_usd')">Input $/1M <span id="sort-ind-input_per_1m_usd"></span></th>
+            <th class="sortable" onclick="toggleSort('output_per_1m_usd')">Output $/1M <span id="sort-ind-output_per_1m_usd"></span></th>
+            <th class="sortable" onclick="toggleSort('blended_per_1m_usd')">Blended $/1M (3:1) <span id="sort-ind-blended_per_1m_usd">▲</span></th>
+          </tr>
+        </thead>
+        <tbody id="models-tbody">
+          <tr><td colspan="7" style="text-align:center;padding:30px;">Loading live LLM token pricing...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="faq-section">
+      <h3>Methodology &amp; Frequently Asked Questions — LLM API Pricing</h3>
+      <div class="faq-item">
+        <strong>1. How is the Blended <code>$/1M</code> token rate calculated?</strong><br/>
+        Following standard industry benchmark conventions (Artificial Analysis / OpenRouter production telemetry), blended pricing weights <strong>3 parts input tokens to 1 part output tokens</strong>: <code>(3 × Input $/1M + 1 × Output $/1M) ÷ 4</code>. Because RAG, coding agents, and multi-turn chat send far more prompt context than generated completion tokens, 3:1 blended cost reflects real production bills more accurately than unweighted averages.
+      </div>
+      <div class="faq-item">
+        <strong>2. How often are LLM token prices updated?</strong><br/>
+        An automated GitHub Actions pipeline runs every 6 hours, cross-checking unauthenticated live catalogs from OpenRouter and LiteLLM direct provider endpoints across 25 Frontier Labs and Open-Weight Inference Clouds, archiving daily snapshots under <code>/history/YYYY-MM-DD.json</code>.
+      </div>
+      <div class="faq-item">
+        <strong>3. What should engineering teams verify before switching inference clouds?</strong><br/>
+        Compare quantization precision (FP16/BF16 vs FP8/INT4), prompt-caching discounts, tokens-per-second throughput (Groq / Cerebras / SambaNova wafer/ASIC vs GPU clusters), rate-limit tiers, and zero-data-retention (ZDR) terms directly with each provider.
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Independent open-data LLM API cost index &amp; token savings calculator. Prices reflect public pay-as-you-go list rates per 1M tokens and may exclude cached-prompt discounts or enterprise commitments.</div>
+      <div style="margin-top:6px;">All model and provider names belong to their respective trademark owners; LLMCostComparison.com is independent and unaffiliated with any listed vendor. <span id="acq-footer-link" class="hidden-stage">· <a href="#acquire" onclick="openModal(true);return false;" class="provider-link">Acquire This Property ($1,488)</a></span></div>
+    </footer>
+  </main>
+
+  <div id="acq-modal" class="modal-backdrop" onclick="if(event.target===this) openModal(false)">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h3 style="margin:0;font-size:1.16rem;">💼 Acquire LLMCostComparison.com (Turnkey Asset)</h3>
+        <button class="btn" onclick="openModal(false)">✕ Close</button>
+      </div>
+      <p class="fs-sm text-muted" style="margin-top:0;">
+        Built for AI inference clouds, LLM observability/gateway startups, or developer media operators seeking organic commercial-intent search traffic without recurring ad spend.
+      </p>
+      <ul class="fs-sm" style="padding-left:18px;line-height:1.65;">
+        <li><strong>Exact-Match Commercial Domain:</strong> <code>LLMCostComparison.com</code> (100% generic English dictionary keywords, clean SPF/DMARC reputation).</li>
+        <li><strong>Zero-Maintenance Stack (<code>$0/mo</code> Hosting):</strong> Static HTML/CSS/JS app + automated 6-hour GitHub Actions cron indexing 220+ live models across 25 providers with an 80-model safety circuit breaker.</li>
+        <li><strong>Historical Token Price Archive:</strong> Daily snapshots stored in <code>/history/YYYY-MM-DD.json</code>.</li>
+        <li><strong>Secure Escrow Transfer:</strong> Fast domain push / EPP transfer + full GitHub repository handover via Spaceship Buyer Protection or Escrow.com.</li>
+      </ul>
+      <div class="modal-price-box">
+        <div>
+          <div class="fs-xs text-muted fw-800">Turnkey Buy-It-Now (Domain + Full Codebase &amp; History)</div>
+          <div style="font-size:1.35rem;font-weight:900;">$1,488 USD <span class="fs-xs text-muted">(Spaceship / Escrow.com)</span></div>
+          <div class="fs-xs text-muted">Direct desk: <code>acquire@llmcostcomparison.com</code></div>
+        </div>
+        <button class="btn btn-primary" onclick="copyInquiry()">📋 Copy Inquiry Email</button>
+      </div>
+      <div id="copy-msg" class="fs-xs fw-800 text-accent"></div>
+    </div>
+  </div>
+
+  <script>
+    const SALE_STAGE = new URLSearchParams(window.location.search).get("sale") === "1" ? "FULL_SALE" : "LAUNCH_CLEAN";
+    let DATA = { models: [], tier_benchmarks: {}, summary: {} };
+    let ACTIVE_PROVIDER = "ALL";
+    let SORT_FIELD = "blended_per_1m_usd";
+    let SORT_DIR = "asc";
+
+    const FEATURED_PILLS = [
+      "ALL", "Inference Clouds", "Frontier Labs", "Groq", "Cerebras", "DeepInfra",
+      "Together AI", "Fireworks AI", "Baseten", "SambaNova", "Novita AI",
+      "OpenAI", "Anthropic", "Google", "DeepSeek", "Qwen (Alibaba)", "Mistral AI"
+    ];
+
+    function applySaleStage() {
+      if (SALE_STAGE === "FULL_SALE") {
+        document.getElementById("acq-top-banner").classList.remove("hidden-stage");
+        document.getElementById("acq-nav-btn").classList.remove("hidden-stage");
+        document.getElementById("acq-footer-link").classList.remove("hidden-stage");
+      }
+    }
+
+    function applyTheme() {
+      const saved = localStorage.getItem("llm_cost_theme") || "light";
+      const isDark = saved === "dark";
+      document.documentElement.classList.toggle("light-theme", !isDark);
+      document.body.classList.toggle("light-theme", !isDark);
+      const btn = document.getElementById("theme-btn");
+      if (btn) btn.textContent = isDark ? "☀️ Light" : "🌙 Dark";
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.classList.contains("light-theme");
+      localStorage.setItem("llm_cost_theme", isLight ? "dark" : "light");
+      applyTheme();
+    }
+
+    function openModal(show) {
+      document.getElementById("acq-modal").classList.toggle("open", !!show);
+    }
+
+    function copyInquiry() {
+      const msg = "To: acquire@llmcostcomparison.com\nSubject: Acquisition Inquiry — LLMCostComparison.com ($1,488 Turnkey)\n\nHello,\nWe are interested in acquiring LLMCostComparison.com (domain + automated 6h LLM pricing codebase). Please share the Spaceship / Escrow.com checkout link.";
+      navigator.clipboard.writeText(msg);
+      document.getElementById("copy-msg").textContent = "✅ Copied inquiry for acquire@llmcostcomparison.com (Spaceship / Escrow ready).";
+    }
+
+    function esc(s) {
+      return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+    }
+
+    function fmtRate(n) {
+      const v = Number(n || 0);
+      if (v === 0) return "$0.00";
+      if (v < 0.01) return "$" + v.toFixed(4);
+      if (v < 0.1) return "$" + v.toFixed(3);
+      return "$" + v.toFixed(2);
+    }
+
+    function fmtUsd(n) {
+      const v = Number(n || 0);
+      if (v >= 1000) return "$" + Math.round(v).toLocaleString("en-US");
+      return "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function buildProviderPills() {
+      const wrap = document.getElementById("provider-pills");
+      wrap.innerHTML = FEATURED_PILLS.map(p => {
+        const label = p === "ALL" ? "All Providers" : p;
+        const active = ACTIVE_PROVIDER === p ? "active" : "";
+        return `<button class="pill-btn ${active}" onclick="selectProviderPill('${esc(p)}')">${esc(label)}</button>`;
+      }).join("");
+    }
+
+    function selectProviderPill(p) {
+      ACTIVE_PROVIDER = p;
+      buildProviderPills();
+      renderTable();
+    }
+
+    function populateProprietarySelect() {
+      const tier = document.getElementById("calc-tier").value;
+      const sel = document.getElementById("calc-prop-model");
+      const propModels = (DATA.models || []).filter(m => m.license_type === "Proprietary" && m.tier !== "Embedding");
+      const tierMatches = propModels.filter(m => m.tier === tier);
+      const list = (tierMatches.length ? tierMatches : propModels).slice().sort((a, b) => b.blended_per_1m_usd - a.blended_per_1m_usd);
+
+      const bench = ((DATA.tier_benchmarks || {})[tier] || {}).proprietary_baseline;
+      let html = "";
+      if (bench) {
+        html += `<option value="__BENCH__">${esc(bench.model_name)} (Tier Median · $${Number(bench.input_per_1m_usd).toFixed(2)}/$${Number(bench.output_per_1m_usd).toFixed(2)})</option>`;
+      }
+      list.forEach((m, idx) => {
+        html += `<option value="${idx}" data-in="${m.input_per_1m_usd}" data-out="${m.output_per_1m_usd}" data-name="${esc(m.model_name)}">${esc(m.model_name)} ($${Number(m.input_per_1m_usd).toFixed(2)} in / $${Number(m.output_per_1m_usd).toFixed(2)} out)</option>`;
+      });
+      sel.innerHTML = html;
+    }
+
+    function onTierChange() {
+      populateProprietarySelect();
+      updateCalculator();
+    }
+
+    function applyWorkload(inM, outM, tier) {
+      document.getElementById("calc-in-m").value = String(inM);
+      document.getElementById("calc-out-m").value = String(outM);
+      document.getElementById("calc-tier").value = tier;
+      populateProprietarySelect();
+      updateCalculator();
+    }
+
+    function updateCalculator() {
+      const inDayM = Math.max(0, parseFloat(document.getElementById("calc-in-m").value || "0"));
+      const outDayM = Math.max(0, parseFloat(document.getElementById("calc-out-m").value || "0"));
+      const tier = document.getElementById("calc-tier").value;
+      const tb = (DATA.tier_benchmarks || {})[tier];
+      if (!tb) return;
+
+      const sel = document.getElementById("calc-prop-model");
+      const opt = sel.options[sel.selectedIndex];
+      let propIn = tb.proprietary_baseline.input_per_1m_usd;
+      let propOut = tb.proprietary_baseline.output_per_1m_usd;
+      let propName = tb.proprietary_baseline.model_name;
+      if (opt && opt.value !== "__BENCH__") {
+        propIn = parseFloat(opt.getAttribute("data-in") || String(propIn));
+        propOut = parseFloat(opt.getAttribute("data-out") || String(propOut));
+        propName = opt.getAttribute("data-name") || propName;
+      }
+
+      const propMonthly = 30.0 * (inDayM * propIn + outDayM * propOut);
+      const clouds = (tb.open_weight_clouds || []).map(c => {
+        const mo = 30.0 * (inDayM * c.input_per_1m_usd + outDayM * c.output_per_1m_usd);
+        const savePct = propMonthly > 0 ? Math.max(0, Math.round((1 - mo / propMonthly) * 100)) : 0;
+        return { ...c, monthly: mo, savePct };
+      }).sort((a, b) => a.monthly - b.monthly);
+
+      const best = clouds[0];
+      const bestMo = best ? best.monthly : 0;
+      const savedMo = Math.max(0, propMonthly - bestMo);
+      const savedPct = propMonthly > 0 ? Math.round((savedMo / propMonthly) * 100) : 0;
+      const savedYr = savedMo * 12.0;
+
+      document.getElementById("res-prop-mo").textContent = fmtUsd(propMonthly) + "/mo";
+      document.getElementById("res-prop-sub").textContent = `${propName} ($${propIn.toFixed(2)} in / $${propOut.toFixed(2)} out)`;
+      document.getElementById("res-cloud-mo").textContent = best ? fmtUsd(bestMo) + "/mo" : "-";
+      document.getElementById("res-cloud-sub").textContent = best ? `${best.provider_name} · ${best.model_name}` : "-";
+      document.getElementById("res-pct-saved").textContent = `${savedPct}% Saved (${fmtUsd(savedMo)}/mo)`;
+      document.getElementById("res-mo-saved-sub").textContent = best ? `Switching to ${best.provider_name} open-weight API` : "-";
+      document.getElementById("res-annual-saved").textContent = fmtUsd(savedYr) + "/yr";
+      document.getElementById("res-tok-vol").textContent = `${(inDayM * 30).toLocaleString()}M in + ${(outDayM * 30).toLocaleString()}M out / mo`;
+
+      document.getElementById("cloud-quote-grid").innerHTML = clouds.map(c => `
+        <div class="cquote">
+          <div class="cquote-top">
+            <a class="cquote-name" href="${esc(c.provider_url)}" target="_blank" rel="noopener">${esc(c.provider_name)} ↗</a>
+            <span class="badge b-save">-${c.savePct}%</span>
+          </div>
+          <div class="cquote-cost">${fmtUsd(c.monthly)}<span class="fs-xs text-muted">/mo</span></div>
+          <div class="cquote-model" title="${esc(c.model_name)}">${esc(c.model_name)} · ${fmtRate(c.input_per_1m_usd)}/${fmtRate(c.output_per_1m_usd)}</div>
+        </div>
+      `).join("");
+    }
+
+    function updateSortIndicators() {
+      ["context_tokens", "input_per_1m_usd", "output_per_1m_usd", "blended_per_1m_usd"].forEach(col => {
+        const el = document.getElementById("sort-ind-" + col);
+        if (!el) return;
+        el.textContent = SORT_FIELD === col ? (SORT_DIR === "asc" ? "▲" : "▼") : "";
+      });
+    }
+
+    function toggleSort(field) {
+      if (SORT_FIELD === field) {
+        SORT_DIR = SORT_DIR === "asc" ? "desc" : "asc";
+      } else {
+        SORT_FIELD = field;
+        SORT_DIR = field === "context_tokens" ? "desc" : "asc";
+      }
+      updateSortIndicators();
+      renderTable();
+    }
+
+    function onSortDropdown() {
+      const [field, dir] = document.getElementById("sort-select").value.split(":");
+      SORT_FIELD = field;
+      SORT_DIR = dir;
+      updateSortIndicators();
+      renderTable();
+    }
+
+    function getFilteredRows() {
+      const q = (document.getElementById("flt-search").value || "").trim().toLowerCase();
+      const tier = document.getElementById("flt-tier").value;
+      const lic = document.getElementById("flt-license").value;
+
+      const rows = (DATA.models || []).filter(r => {
+        if (tier !== "ALL" && r.tier !== tier) return false;
+        if (lic !== "ALL" && r.license_type !== lic) return false;
+        if (ACTIVE_PROVIDER === "Inference Clouds" && r.provider_category !== "Inference Cloud") return false;
+        if (ACTIVE_PROVIDER === "Frontier Labs" && r.provider_category === "Inference Cloud") return false;
+        if (!["ALL", "Inference Clouds", "Frontier Labs"].includes(ACTIVE_PROVIDER) && r.provider_name !== ACTIVE_PROVIDER) return false;
+        if (q) {
+          const hay = `${r.provider_name} ${r.model_name} ${r.model_id} ${r.family} ${r.tier} ${r.license_type}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      rows.sort((a, b) => {
+        const av = Number(a[SORT_FIELD] || 0);
+        const bv = Number(b[SORT_FIELD] || 0);
+        return SORT_DIR === "asc" ? av - bv : bv - av;
+      });
+      return rows;
+    }
+
+    function renderTable() {
+      const rows = getFilteredRows();
+      document.getElementById("row-count-lbl").textContent = `${rows.length} live endpoints`;
+      const tb = document.getElementById("models-tbody");
+      if (!rows.length) {
+        tb.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:28px;">No LLM endpoints match your filter criteria.</td></tr>`;
+        return;
+      }
+      tb.innerHTML = rows.map(r => {
+        const licBadge = r.license_type === "Open-Weight"
+          ? `<span class="badge b-open">Open-Weight</span>`
+          : `<span class="badge b-prop">Proprietary</span>`;
+        return `
+          <tr>
+            <td>
+              <div><a class="provider-link" href="${esc(r.provider_url)}" target="_blank" rel="noopener">${esc(r.provider_name)} ↗</a></div>
+              <div class="fs-xs text-muted">${esc(r.provider_category)}</div>
+            </td>
+            <td>
+              <div class="fw-800">${esc(r.model_name)}</div>
+              <div class="fs-xs text-muted">${esc(r.family)} · <code>${esc(r.model_id)}</code></div>
+            </td>
+            <td>
+              <div><span class="badge b-tier">${esc(r.tier)}</span></div>
+              <div style="margin-top:4px;">${licBadge}</div>
+            </td>
+            <td class="fw-800">${esc(r.context_label)}</td>
+            <td class="fw-800">${fmtRate(r.input_per_1m_usd)}</td>
+            <td class="fw-800">${fmtRate(r.output_per_1m_usd)}</td>
+            <td class="fw-900">${fmtRate(r.blended_per_1m_usd)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function exportCsv() {
+      const rows = getFilteredRows();
+      const header = ["Provider","Category","Model_Name","Model_ID","Family","Tier","License","Context_Tokens","Input_Per_1M_USD","Output_Per_1M_USD","Blended_3to1_Per_1M_USD","Provider_URL"];
+      const lines = [header.join(",")].concat(rows.map(r =>
+        [r.provider_name, r.provider_category, r.model_name, r.model_id, r.family, r.tier, r.license_type, r.context_tokens, r.input_per_1m_usd, r.output_per_1m_usd, r.blended_per_1m_usd, r.provider_url]
+          .map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(",")
+      ));
+      const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "llm_cost_comparison_live.csv";
+      a.click();
+    }
+
+    async function init() {
+      const r = await fetch("./llm_costs.json");
+      DATA = await r.json();
+      const sum = DATA.summary || {};
+      document.getElementById("updated-stamp").textContent = `Updated: ${DATA.updated_at_utc || "-"} (${sum.curated_offers || 0} models)`;
+      document.getElementById("live-pill-badge").textContent = `NEW · LIVE ${sum.providers_tracked || 25} PROVIDERS`;
+      document.getElementById("kpi-offers").textContent = `${sum.curated_offers || 0} Models`;
+      document.getElementById("kpi-scanned").textContent = `Filtered from ${(sum.total_models_scanned || 0).toLocaleString()} live API entries`;
+      document.getElementById("kpi-providers").textContent = `${sum.providers_tracked || 0} Vendors (${sum.inference_clouds_tracked || 12} Clouds)`;
+
+      const fastRows = (DATA.models || []).filter(m => m.tier === "Fast 70B-8B");
+      if (fastRows.length) {
+        const lowFast = fastRows.reduce((a, b) => a.blended_per_1m_usd < b.blended_per_1m_usd ? a : b);
+        document.getElementById("kpi-low-fast").textContent = `${fmtRate(lowFast.blended_per_1m_usd)} / 1M`;
+        document.getElementById("kpi-low-fast-sub").textContent = `${lowFast.provider_name} · ${lowFast.model_name}`;
+      }
+      document.getElementById("kpi-spread").textContent = "Up to 92% Off";
+
+      buildProviderPills();
+      populateProprietarySelect();
+      updateCalculator();
+      updateSortIndicators();
+      renderTable();
+    }
+
+    applyTheme();
+    applySaleStage();
+    init();
+  </script>
+</body>
+</html>
