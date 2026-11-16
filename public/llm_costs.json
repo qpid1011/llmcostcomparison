@@ -1,7 +1,7 @@
 {
   "site": "LLMCostComparison.com",
-  "updated_at_utc": "2026-11-16 08:13 UTC",
-  "updated_epoch": 1794816831,
+  "updated_at_utc": "2026-11-16 09:50 UTC",
+  "updated_epoch": 1794822641,
   "stale_warning": false,
   "summary": {
     "curated_offers": 229,
@@ -545,6 +545,23 @@
       "source": "openrouter_live"
     },
     {
+      "provider_id": "qwen",
+      "provider_name": "Qwen (Alibaba)",
+      "provider_url": "https://openrouter.ai/qwen",
+      "provider_category": "Model Lab",
+      "model_id": "qwen/qwen3.5-9b",
+      "model_name": "Qwen: Qwen3.5-9B",
+      "family": "Qwen",
+      "tier": "Fast 70B-8B",
+      "license_type": "Open-Weight",
+      "context_tokens": 262144,
+      "context_label": "262K",
+      "input_per_1m_usd": 0.047,
+      "output_per_1m_usd": 0.069,
+      "blended_per_1m_usd": 0.0525,
+      "source": "openrouter_live"
+    },
+    {
       "provider_id": "novita",
       "provider_name": "Novita AI",
       "provider_url": "https://novita.ai/pricing",
@@ -747,23 +764,6 @@
       "output_per_1m_usd": 0.1,
       "blended_per_1m_usd": 0.0625,
       "source": "litellm_direct"
-    },
-    {
-      "provider_id": "qwen",
-      "provider_name": "Qwen (Alibaba)",
-      "provider_url": "https://openrouter.ai/qwen",
-      "provider_category": "Model Lab",
-      "model_id": "qwen/qwen3.5-9b",
-      "model_name": "Qwen: Qwen3.5-9B",
-      "family": "Qwen",
-      "tier": "Fast 70B-8B",
-      "license_type": "Open-Weight",
-      "context_tokens": 262144,
-      "context_label": "262K",
-      "input_per_1m_usd": 0.058,
-      "output_per_1m_usd": 0.085,
-      "blended_per_1m_usd": 0.0648,
-      "source": "openrouter_live"
     },
     {
       "provider_id": "cohere",
