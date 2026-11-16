@@ -6,6 +6,19 @@
   <title>LLM Cost Comparison (2026 Live) — API Token Price Index &amp; Monthly Savings Calculator</title>
   <meta name="description" content="Real-time LLM API cost comparison across 25 providers (OpenAI, Anthropic, Google, DeepSeek, Groq, Cerebras, Together AI, Fireworks AI, DeepInfra, Baseten, SambaNova). Compare $/1M input, output &amp; 3:1 blended token prices and calculate monthly inference savings." />
   <link rel="canonical" href="https://llmcostcomparison.com/" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-88B5QR95FL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-88B5QR95FL', { anonymize_ip: true });
+    document.addEventListener('click', function(e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="http"]') : null;
+      if (a && a.hostname && a.hostname.indexOf('llmcostcomparison.com') === -1) {
+        gtag('event', 'provider_outbound_click', { provider_domain: a.hostname, link_url: a.href });
+      }
+    });
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
