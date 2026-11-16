@@ -28,14 +28,16 @@ jobs:
         with:
           python-version: "3.11"
       - name: Fetch live multi-provider LLM token costs & daily history snapshot
-        run: python3 scripts/sync_llm_costs.py
-      - name: Commit updated llm_costs.json and history archive
+        run: |
+          python3 scripts/sync_llm_costs.py
+          python3 scripts/prerender_seo.py
+      - name: Commit updated llm_costs.json, SSR index.html, sitemap & history archive
         run: |
           git config user.name "LLMCostComparison Bot"
           git config user.email "bot@llmcostcomparison.com"
-          git add public/llm_costs.json public/history/
+          git add public/llm_costs.json public/index.html public/sitemap.xml public/*.txt public/history/
           if ! git diff --staged --quiet; then
-            git commit -m "chore(costs): auto-sync live LLM API token pricing & daily history [skip ci]"
+            git commit -m "chore(costs): auto-sync live LLM API token pricing, SSR HTML & daily history [skip ci]"
             git pull --rebase -X ours origin main
             git push origin HEAD:main
           fi
@@ -48,3 +50,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Ping IndexNow after Pages deploy
+        run: python3 scripts/prerender_seo.py --ping-indexnow || true
