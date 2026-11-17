@@ -1,9 +1,9 @@
 {
   "date_utc": "2026-11-17",
-  "updated_at_utc": "2026-11-17 08:10 UTC",
+  "updated_at_utc": "2026-11-17 21:07 UTC",
   "summary": {
     "curated_offers": 229,
-    "total_models_scanned": 3736,
+    "total_models_scanned": 3767,
     "providers_tracked": 25,
     "inference_clouds_tracked": 12,
     "lowest_blended_per_1m_usd": 0.006
