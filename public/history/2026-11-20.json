@@ -1,0 +1,238 @@
+{
+  "date_utc": "2026-11-20",
+  "updated_at_utc": "2026-11-20 07:32 UTC",
+  "summary": {
+    "curated_offers": 228,
+    "total_models_scanned": 4488,
+    "providers_tracked": 25,
+    "inference_clouds_tracked": 12,
+    "lowest_blended_per_1m_usd": 0.006
+  },
+  "tier_benchmarks": {
+    "Frontier Reasoning": {
+      "proprietary_baseline": {
+        "provider_name": "xAI",
+        "model_name": "SpaceXSI: Grok 4.20",
+        "input_per_1m_usd": 1.25,
+        "output_per_1m_usd": 2.5,
+        "blended_per_1m_usd": 1.5625
+      },
+      "open_weight_clouds": [
+        {
+          "provider_name": "DeepInfra",
+          "provider_url": "https://deepinfra.com/pricing",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.037,
+          "output_per_1m_usd": 0.17,
+          "blended_per_1m_usd": 0.0703
+        },
+        {
+          "provider_name": "Fireworks AI",
+          "provider_url": "https://fireworks.ai/pricing",
+          "model_name": "nemotron-lightning-3p5-30b-a3b",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.2,
+          "blended_per_1m_usd": 0.0875
+        },
+        {
+          "provider_name": "Novita AI",
+          "provider_url": "https://novita.ai/pricing",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.25,
+          "blended_per_1m_usd": 0.1
+        },
+        {
+          "provider_name": "Baseten",
+          "provider_url": "https://www.baseten.co/pricing/",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.5,
+          "blended_per_1m_usd": 0.2
+        },
+        {
+          "provider_name": "Together AI",
+          "provider_url": "https://www.together.ai/pricing",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "blended_per_1m_usd": 0.2625
+        },
+        {
+          "provider_name": "Groq",
+          "provider_url": "https://groq.com/pricing/",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "blended_per_1m_usd": 0.2625
+        },
+        {
+          "provider_name": "SambaNova",
+          "provider_url": "https://sambanova.ai/fast-api",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.22,
+          "output_per_1m_usd": 0.59,
+          "blended_per_1m_usd": 0.3125
+        },
+        {
+          "provider_name": "Cerebras",
+          "provider_url": "https://cerebras.ai/inference",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.35,
+          "output_per_1m_usd": 0.75,
+          "blended_per_1m_usd": 0.45
+        }
+      ]
+    },
+    "Coding": {
+      "proprietary_baseline": {
+        "provider_name": "OpenAI",
+        "model_name": "OpenAI: GPT-5.1-Codex-Mini",
+        "input_per_1m_usd": 0.25,
+        "output_per_1m_usd": 2.0,
+        "blended_per_1m_usd": 0.6875
+      },
+      "open_weight_clouds": [
+        {
+          "provider_name": "DeepInfra",
+          "provider_url": "https://deepinfra.com/pricing",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.037,
+          "output_per_1m_usd": 0.17,
+          "blended_per_1m_usd": 0.0703
+        },
+        {
+          "provider_name": "Fireworks AI",
+          "provider_url": "https://fireworks.ai/pricing",
+          "model_name": "nemotron-lightning-3p5-30b-a3b",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.2,
+          "blended_per_1m_usd": 0.0875
+        },
+        {
+          "provider_name": "Novita AI",
+          "provider_url": "https://novita.ai/pricing",
+          "model_name": "qwen3-coder-30b-a3b-instruct",
+          "input_per_1m_usd": 0.07,
+          "output_per_1m_usd": 0.27,
+          "blended_per_1m_usd": 0.12
+        },
+        {
+          "provider_name": "Baseten",
+          "provider_url": "https://www.baseten.co/pricing/",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.5,
+          "blended_per_1m_usd": 0.2
+        },
+        {
+          "provider_name": "Together AI",
+          "provider_url": "https://www.together.ai/pricing",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "blended_per_1m_usd": 0.2625
+        },
+        {
+          "provider_name": "Groq",
+          "provider_url": "https://groq.com/pricing/",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.15,
+          "output_per_1m_usd": 0.6,
+          "blended_per_1m_usd": 0.2625
+        },
+        {
+          "provider_name": "SambaNova",
+          "provider_url": "https://sambanova.ai/fast-api",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.22,
+          "output_per_1m_usd": 0.59,
+          "blended_per_1m_usd": 0.3125
+        },
+        {
+          "provider_name": "Cerebras",
+          "provider_url": "https://cerebras.ai/inference",
+          "model_name": "gpt-oss-120b",
+          "input_per_1m_usd": 0.35,
+          "output_per_1m_usd": 0.75,
+          "blended_per_1m_usd": 0.45
+        }
+      ]
+    },
+    "Fast 70B-8B": {
+      "proprietary_baseline": {
+        "provider_name": "OpenAI",
+        "model_name": "OpenAI: GPT-5.4 Nano",
+        "input_per_1m_usd": 0.2,
+        "output_per_1m_usd": 1.25,
+        "blended_per_1m_usd": 0.4625
+      },
+      "open_weight_clouds": [
+        {
+          "provider_name": "DeepInfra",
+          "provider_url": "https://deepinfra.com/pricing",
+          "model_name": "Meta-Llama-3.1-8B-Instruct-Turbo",
+          "input_per_1m_usd": 0.02,
+          "output_per_1m_usd": 0.04,
+          "blended_per_1m_usd": 0.025
+        },
+        {
+          "provider_name": "Novita AI",
+          "provider_url": "https://novita.ai/pricing",
+          "model_name": "llama-3.1-8b-instruct",
+          "input_per_1m_usd": 0.02,
+          "output_per_1m_usd": 0.05,
+          "blended_per_1m_usd": 0.0275
+        },
+        {
+          "provider_name": "Together AI",
+          "provider_url": "https://www.together.ai/pricing",
+          "model_name": "gpt-oss-20b",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.2,
+          "blended_per_1m_usd": 0.0875
+        },
+        {
+          "provider_name": "Fireworks AI",
+          "provider_url": "https://fireworks.ai/pricing",
+          "model_name": "nemotron-lightning-3p5-30b-a3b",
+          "input_per_1m_usd": 0.05,
+          "output_per_1m_usd": 0.2,
+          "blended_per_1m_usd": 0.0875
+        },
+        {
+          "provider_name": "Cerebras",
+          "provider_url": "https://cerebras.ai/inference",
+          "model_name": "llama-3.1-8b",
+          "input_per_1m_usd": 0.1,
+          "output_per_1m_usd": 0.1,
+          "blended_per_1m_usd": 0.1
+        },
+        {
+          "provider_name": "Groq",
+          "provider_url": "https://groq.com/pricing/",
+          "model_name": "gpt-oss-20b",
+          "input_per_1m_usd": 0.075,
+          "output_per_1m_usd": 0.3,
+          "blended_per_1m_usd": 0.1312
+        },
+        {
+          "provider_name": "Baseten",
+          "provider_url": "https://www.baseten.co/pricing/",
+          "model_name": "DeepSeek-V4-Flash-0731",
+          "input_per_1m_usd": 0.13,
+          "output_per_1m_usd": 0.26,
+          "blended_per_1m_usd": 0.1625
+        },
+        {
+          "provider_name": "SambaNova",
+          "provider_url": "https://sambanova.ai/fast-api",
+          "model_name": "gemma-4-31B-it",
+          "input_per_1m_usd": 0.38,
+          "output_per_1m_usd": 1.15,
+          "blended_per_1m_usd": 0.5725
+        }
+      ]
+    }
+  }
+}
