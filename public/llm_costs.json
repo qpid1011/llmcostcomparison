@@ -1,7 +1,7 @@
 {
   "site": "LLMCostComparison.com",
-  "updated_at_utc": "2026-11-24 14:38 UTC",
-  "updated_epoch": 1795531087,
+  "updated_at_utc": "2026-11-24 15:39 UTC",
+  "updated_epoch": 1795534744,
   "stale_warning": false,
   "summary": {
     "curated_offers": 228,
@@ -1718,6 +1718,23 @@
       "source": "litellm_direct"
     },
     {
+      "provider_id": "minimax",
+      "provider_name": "MiniMax",
+      "provider_url": "https://openrouter.ai/minimax",
+      "provider_category": "Model Lab",
+      "model_id": "minimax/minimax-m3.1-flash",
+      "model_name": "MiniMax: MiniMax M3.1 Flash",
+      "family": "MiniMax",
+      "tier": "Fast 70B-8B",
+      "license_type": "Open-Weight",
+      "context_tokens": 1048576,
+      "context_label": "1M",
+      "input_per_1m_usd": 0.075,
+      "output_per_1m_usd": 0.3,
+      "blended_per_1m_usd": 0.1312,
+      "source": "openrouter_live"
+    },
+    {
       "provider_id": "groq",
       "provider_name": "Groq",
       "provider_url": "https://groq.com/pricing/",
@@ -2647,23 +2664,6 @@
       "license_type": "Proprietary",
       "context_tokens": 128000,
       "context_label": "128K",
-      "input_per_1m_usd": 0.15,
-      "output_per_1m_usd": 0.6,
-      "blended_per_1m_usd": 0.2625,
-      "source": "openrouter_live"
-    },
-    {
-      "provider_id": "minimax",
-      "provider_name": "MiniMax",
-      "provider_url": "https://openrouter.ai/minimax",
-      "provider_category": "Model Lab",
-      "model_id": "minimax/minimax-m3.1-flash",
-      "model_name": "MiniMax: MiniMax M3.1 Flash",
-      "family": "MiniMax",
-      "tier": "Fast 70B-8B",
-      "license_type": "Open-Weight",
-      "context_tokens": 1048576,
-      "context_label": "1M",
       "input_per_1m_usd": 0.15,
       "output_per_1m_usd": 0.6,
       "blended_per_1m_usd": 0.2625,
