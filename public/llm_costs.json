@@ -1,7 +1,7 @@
 {
   "site": "LLMCostComparison.com",
-  "updated_at_utc": "2026-11-24 10:09 UTC",
-  "updated_epoch": 1795514940,
+  "updated_at_utc": "2026-11-24 14:38 UTC",
+  "updated_epoch": 1795531087,
   "stale_warning": false,
   "summary": {
     "curated_offers": 228,
@@ -1055,6 +1055,23 @@
       "source": "litellm_direct"
     },
     {
+      "provider_id": "deepseek",
+      "provider_name": "DeepSeek",
+      "provider_url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "provider_category": "Model Lab",
+      "model_id": "deepseek/deepseek-v4.1-flash",
+      "model_name": "DeepSeek: DeepSeek V4.1 Flash",
+      "family": "DeepSeek",
+      "tier": "Fast 70B-8B",
+      "license_type": "Open-Weight",
+      "context_tokens": 1048576,
+      "context_label": "1M",
+      "input_per_1m_usd": 0.0507,
+      "output_per_1m_usd": 0.2028,
+      "blended_per_1m_usd": 0.0887,
+      "source": "openrouter_live"
+    },
+    {
       "provider_id": "deepinfra",
       "provider_name": "DeepInfra",
       "provider_url": "https://deepinfra.com/pricing",
@@ -1474,9 +1491,9 @@
       "license_type": "Open-Weight",
       "context_tokens": 1048576,
       "context_label": "1M",
-      "input_per_1m_usd": 0.047,
+      "input_per_1m_usd": 0.0456,
       "output_per_1m_usd": 0.3,
-      "blended_per_1m_usd": 0.1103,
+      "blended_per_1m_usd": 0.1092,
       "source": "openrouter_live"
     },
     {
@@ -2160,23 +2177,6 @@
       "source": "litellm_direct"
     },
     {
-      "provider_id": "z-ai",
-      "provider_name": "Z.ai (GLM)",
-      "provider_url": "https://openrouter.ai/z-ai",
-      "provider_category": "Model Lab",
-      "model_id": "z-ai/glm-5.3-flash",
-      "model_name": "Z.ai: GLM 5.3 Flash",
-      "family": "GLM",
-      "tier": "Fast 70B-8B",
-      "license_type": "Open-Weight",
-      "context_tokens": 1048576,
-      "context_label": "1M",
-      "input_per_1m_usd": 0.12,
-      "output_per_1m_usd": 0.38,
-      "blended_per_1m_usd": 0.185,
-      "source": "openrouter_live"
-    },
-    {
       "provider_id": "qwen",
       "provider_name": "Qwen (Alibaba)",
       "provider_url": "https://openrouter.ai/qwen",
@@ -2449,23 +2449,6 @@
       "source": "litellm_direct"
     },
     {
-      "provider_id": "deepseek",
-      "provider_name": "DeepSeek",
-      "provider_url": "https://api-docs.deepseek.com/quick_start/pricing",
-      "provider_category": "Model Lab",
-      "model_id": "deepseek/deepseek-v4.1-flash",
-      "model_name": "DeepSeek: DeepSeek V4.1 Flash",
-      "family": "DeepSeek",
-      "tier": "Fast 70B-8B",
-      "license_type": "Open-Weight",
-      "context_tokens": 1048576,
-      "context_label": "1M",
-      "input_per_1m_usd": 0.14,
-      "output_per_1m_usd": 0.42,
-      "blended_per_1m_usd": 0.21,
-      "source": "openrouter_live"
-    },
-    {
       "provider_id": "qwen",
       "provider_name": "Qwen (Alibaba)",
       "provider_url": "https://openrouter.ai/qwen",
@@ -2532,6 +2515,23 @@
       "output_per_1m_usd": 0.47,
       "blended_per_1m_usd": 0.23,
       "source": "litellm_direct"
+    },
+    {
+      "provider_id": "z-ai",
+      "provider_name": "Z.ai (GLM)",
+      "provider_url": "https://openrouter.ai/z-ai",
+      "provider_category": "Model Lab",
+      "model_id": "z-ai/glm-5.3-flash",
+      "model_name": "Z.ai: GLM 5.3 Flash",
+      "family": "GLM",
+      "tier": "Fast 70B-8B",
+      "license_type": "Open-Weight",
+      "context_tokens": 1048576,
+      "context_label": "1M",
+      "input_per_1m_usd": 0.15,
+      "output_per_1m_usd": 0.5,
+      "blended_per_1m_usd": 0.2375,
+      "source": "openrouter_live"
     },
     {
       "provider_id": "baseten",
