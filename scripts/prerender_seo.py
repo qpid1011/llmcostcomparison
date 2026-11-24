@@ -14,6 +14,7 @@ import urllib.request
 ROOT_DIR = Path(__file__).resolve().parent.parent
 PUBLIC_DIR = ROOT_DIR / "public"
 JSON_PATH = PUBLIC_DIR / "llm_costs.json"
+TARGETS_PATH = PUBLIC_DIR / "seo_targets.json"
 HTML_PATH = PUBLIC_DIR / "index.html"
 SITEMAP_PATH = PUBLIC_DIR / "sitemap.xml"
 HOST = "llmcostcomparison.com"
@@ -75,7 +76,7 @@ def _render_rows_html(models: list[dict[str, object]]) -> str:
 
 def _build_ldjson(data: dict[str, object], iso_date: str) -> str:
     summ = data.get("summary") or {}
-    total_models = int(summ.get("total_models") or 220)
+    total_models = int(summ.get("curated_offers") or summ.get("total_models") or 228)
     providers = int(summ.get("providers_tracked") or 25)
     graph = {
         "@context": "https://schema.org",
@@ -155,28 +156,36 @@ def prerender_all(ping_indexnow: bool = False) -> dict[str, object]:
     )
     HTML_PATH.write_text(doc, encoding="utf-8")
 
+    entries = [(SITE_URL, "1.0")]
+    if TARGETS_PATH.exists():
+        tcfg = json.loads(TARGETS_PATH.read_text(encoding="utf-8"))
+        for p in list(tcfg.get("pages") or [])[: int(tcfg.get("max_total_pages") or 15)]:
+            if p.get("slug"):
+                entries.append((f"{SITE_URL}{p['slug']}/", "0.85"))
+    url_nodes = "\n".join(
+        f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{day_str}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>{pr}</priority>\n  </url>"
+        for u, pr in entries
+    )
     SITEMAP_PATH.write_text(
-        f'<?xml version="1.0" encoding="UTF-8"?>\n'
-        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"  <url>\n    <loc>{SITE_URL}</loc>\n    <lastmod>{day_str}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n"
-        f"</urlset>\n",
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{url_nodes}\n</urlset>\n',
         encoding="utf-8",
     )
     key_file = PUBLIC_DIR / f"{INDEXNOW_KEY}.txt"
     key_file.write_text(INDEXNOW_KEY, encoding="utf-8")
 
+    sitemap_urls = re.findall(r"<loc>\s*(https?://[^<\s]+)\s*</loc>", SITEMAP_PATH.read_text(encoding="utf-8")) or [SITE_URL]
     ping_status = None
     if ping_indexnow:
         body = json.dumps({
             "host": HOST,
             "key": INDEXNOW_KEY,
             "keyLocation": f"{SITE_URL}{INDEXNOW_KEY}.txt",
-            "urlList": [SITE_URL],
+            "urlList": sitemap_urls,
         }).encode("utf-8")
         req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"}, method="POST")
         with urllib.request.urlopen(req, timeout=12) as resp:
             ping_status = resp.status
-    return {"host": HOST, "ssr_rows": len(_select_ssr_models(models)), "indexnow_key": INDEXNOW_KEY, "ping_status": ping_status}
+    return {"host": HOST, "ssr_rows": len(_select_ssr_models(models)), "sitemap_urls": len(sitemap_urls), "indexnow_key": INDEXNOW_KEY, "ping_status": ping_status}
 
 
 if __name__ == "__main__":
