@@ -215,6 +215,12 @@
       "seed": "token cost"
     },
     {
+      "query": "llama api key free",
+      "score": 951,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
       "query": "llama api pricing",
       "score": 950,
       "source": "google_us_autocomplete",
@@ -227,34 +233,28 @@
       "seed": "qwen api"
     },
     {
+      "query": "llama api free",
+      "score": 850,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "token cost ai",
+      "score": 850,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
       "query": "llm cost per token",
       "score": 750,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
     },
     {
-      "query": "token cost ai",
-      "score": 750,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "llama api key free",
-      "score": 701,
-      "source": "google_us_autocomplete",
-      "seed": "llama api"
-    },
-    {
       "query": "llm cost calculator",
       "score": 700,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
-    },
-    {
-      "query": "llama api free",
-      "score": 700,
-      "source": "google_us_autocomplete",
-      "seed": "llama api"
     },
     {
       "query": "gemma api text encode comfyui",
@@ -269,28 +269,28 @@
       "seed": "llm cost"
     },
     {
+      "query": "deepseek api cost",
+      "score": 603,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
       "query": "llm cost vs performance chart",
       "score": 602,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
     },
     {
+      "query": "deepseek api platform",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
       "query": "llm cost optimization",
       "score": 601,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
-    },
-    {
-      "query": "llm api pricing comparison 2026",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "llm api pricing"
-    },
-    {
-      "query": "claude api pricing vs subscription",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "claude api pricing"
     }
   ]
 }
