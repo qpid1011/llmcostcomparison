@@ -18,7 +18,9 @@
       "h1": "Llama API Pricing & Inference Cloud Cost Comparison",
       "lead": "Compare live $/1M input, output, and 3:1 blended token prices for Meta Llama 4, Llama 3.3, Llama 3.2, and Llama 3.1 endpoints across Groq, Cerebras, DeepInfra, Together AI, Fireworks AI, Nebius, Novita, and Hyperbolic.",
       "match_mode": "keyword",
-      "keywords": ["llama"],
+      "keywords": [
+        "llama"
+      ],
       "quantization_note": "Inference clouds serve Meta Llama weights in FP16/BF16, FP8, or INT4 quantization. Always verify numerical precision (FP8 vs BF16), context window caps (16K to 1.3M), throughput (tokens/sec on ASICs vs GPUs), and Zero-Data-Retention (ZDR) policies before routing production workloads."
     },
     {
@@ -29,7 +31,9 @@
       "h1": "DeepSeek R1 & V3 API Pricing Across Inference Clouds",
       "lead": "Side-by-side $/1M input, reasoning completion output, and 3:1 blended token pricing for DeepSeek R1, DeepSeek V3/V4, and R1-Distill endpoints across direct DeepSeek API and US/EU inference clouds.",
       "match_mode": "keyword",
-      "keywords": ["deepseek"],
+      "keywords": [
+        "deepseek"
+      ],
       "quantization_note": "DeepSeek R1 and V3/V4 endpoints vary by hosting jurisdiction, FP8 native vs INT4 distilled weights, chain-of-thought reasoning token billing, context length (64K to 1M), and enterprise Zero-Data-Retention (ZDR) guarantees on US/EU clouds such as Fireworks AI, Together AI, Baseten, and DeepInfra."
     },
     {
@@ -40,7 +44,10 @@
       "h1": "OpenAI GPT vs Anthropic Claude API Token Cost Comparison",
       "lead": "Direct $/1M input, output, and 3:1 blended API token cost benchmark comparing OpenAI GPT & Codex models against Anthropic Claude Opus, Sonnet, and Haiku tiers for coding, RAG, and enterprise agents.",
       "match_mode": "providers",
-      "provider_ids": ["openai", "anthropic"],
+      "provider_ids": [
+        "openai",
+        "anthropic"
+      ],
       "quantization_note": "Both OpenAI and Anthropic publish pay-as-you-go per-1M token list rates with separate prompt-caching read/write multipliers and batch API discounts (typically 50% off async). Verify long-context tier thresholds (>200K tokens) and Zero-Data-Retention (ZDR) enterprise addendums."
     },
     {
@@ -51,7 +58,9 @@
       "h1": "Qwen API Pricing & Open-Weight Cloud Cost Index",
       "lead": "Live $/1M input, output, and 3:1 blended token pricing for Qwen3, Qwen3.5/3.7, Qwen2.5-Coder, and Qwen-72B models across Alibaba Qwen API, Nebius AI, DeepInfra, Novita AI, Fireworks AI, Together AI, and Hyperbolic.",
       "match_mode": "keyword",
-      "keywords": ["qwen"],
+      "keywords": [
+        "qwen"
+      ],
       "quantization_note": "Qwen open-weight models (Apache-2.0 / Qwen license) are hosted in BF16 and FP8 formats across global inference clouds. Check active MoE parameter routing (e.g., 30B-A3B), coding tool-call support, context window limits (32K to 1M), and provider Zero-Data-Retention (ZDR) terms."
     },
     {
@@ -63,7 +72,7 @@
       "lead": "The 40 lowest-cost live chat, coding, and reasoning LLM APIs ranked by 3:1 blended $/1M token price across 25 providers, excluding embedding-only endpoints.",
       "match_mode": "top_cheapest",
       "limit": 40,
-      "quantization_note": "Ultra-low-cost LLM APIs ($0.015–$0.10 per 1M blended tokens) typically leverage 4B–32B dense or sparse MoE architectures with FP8 quantization. Benchmark accuracy on your domain evals, rate-limit ceilings, uptime SLAs, and Zero-Data-Retention (ZDR) terms before migrating high-volume traffic."
+      "quantization_note": "Ultra-low-cost LLM APIs ($0.015\u2013$0.10 per 1M blended tokens) typically leverage 4B\u201332B dense or sparse MoE architectures with FP8 quantization. Benchmark accuracy on your domain evals, rate-limit ceilings, uptime SLAs, and Zero-Data-Retention (ZDR) terms before migrating high-volume traffic."
     },
     {
       "slug": "gemini-vs-gpt-pricing",
@@ -73,9 +82,215 @@
       "h1": "Google Gemini vs OpenAI GPT API Pricing Comparison",
       "lead": "Head-to-head $/1M input, output, and 3:1 blended token cost comparison between Google Gemini Flash/Lite models and OpenAI GPT Nano, Mini, Codex, and Frontier series.",
       "match_mode": "providers_families",
-      "provider_ids": ["google", "openai"],
-      "families": ["Gemini", "GPT"],
+      "provider_ids": [
+        "google",
+        "openai"
+      ],
+      "families": [
+        "Gemini",
+        "GPT"
+      ],
       "quantization_note": "Google AI Studio / Vertex AI Gemini tiers and OpenAI GPT APIs differ in context-caching storage fees, multimodal token accounting, >128K/>200K long-context surcharges, and free-tier vs paid Zero-Data-Retention (ZDR) data-logging defaults."
+    },
+    {
+      "slug": "mistral-api-pricing",
+      "nav_label": "Mistral API Pricing",
+      "target_query": "Mistral & Codestral API Pricing Comparison",
+      "title": "Mistral & Codestral API Pricing Comparison (2026 Live $/1M)",
+      "h1": "Mistral & Codestral API Pricing Comparison",
+      "lead": "Compare live $/1M input, output, and 3:1 blended token pricing for Mistral Large, Mistral Medium/Small, Ministral, and Codestral endpoints across Mistral AI and open-weight inference clouds.",
+      "match_mode": "keyword",
+      "keywords": [
+        "mistral",
+        "codestral",
+        "ministral"
+      ],
+      "quantization_note": "Mistral AI hosts official EU-resident endpoints alongside open-weight Mistral/Ministral checkpoints on Fireworks AI, Together AI, DeepInfra, and Nebius. Compare EU GDPR data residency, FP8 vs BF16 precision, and coding latency."
+    },
+    {
+      "slug": "claude-api-pricing",
+      "nav_label": "Claude API Pricing",
+      "target_query": "Anthropic Claude API Token Pricing & Cost Calculator",
+      "title": "Anthropic Claude API Token Pricing & Cost Calculator (2026 Live)",
+      "h1": "Anthropic Claude API Token Pricing & Cost Calculator",
+      "lead": "Live $/1M input, output, and 3:1 blended token pricing across Anthropic Claude Opus, Claude Sonnet, and Claude Haiku model generations with monthly agent/RAG bill estimation.",
+      "match_mode": "providers",
+      "provider_ids": [
+        "anthropic"
+      ],
+      "quantization_note": "Anthropic Claude API rates apply separate prompt-caching write/read multipliers (up to 90% read discount on repeated system/RAG context) and 50% async Message Batches API discounts. Verify >200K extended context tiers."
+    }
+  ],
+  "auto_promotions": [
+    {
+      "slug": "mistral-api-pricing",
+      "iso_week": "2026-W48",
+      "promoted_at_utc": "2026-11-25 02:47 UTC",
+      "trigger_query": "mistral api pricing models",
+      "trigger_score": 601,
+      "trigger_source": "google_us_autocomplete",
+      "live_models_verified": 12
+    },
+    {
+      "slug": "claude-api-pricing",
+      "iso_week": "2026-W48",
+      "promoted_at_utc": "2026-11-25 02:47 UTC",
+      "trigger_query": "claude api pricing vs subscription",
+      "trigger_score": 601,
+      "trigger_source": "google_us_autocomplete",
+      "live_models_verified": 10
+    }
+  ],
+  "observed_gsc_queries": [
+    {
+      "query": "llm cost comparison",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "deepseek api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "qwen api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "gemma api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "token cost claude",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llm cost per task",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm api pricing comparison",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llm api pricing"
+    },
+    {
+      "query": "deepseek api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "llama api key",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "qwen api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "gemma api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "token cost calculator",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llama api pricing",
+      "score": 950,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "qwen api free",
+      "score": 950,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "llm cost per token",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "token cost ai",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llama api key free",
+      "score": 701,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "llm cost calculator",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llama api free",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "gemma api text encode comfyui",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "llm cost comparison chart",
+      "score": 650,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm cost vs performance chart",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm cost optimization",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm api pricing comparison 2026",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm api pricing"
+    },
+    {
+      "query": "claude api pricing vs subscription",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "claude api pricing"
     }
   ]
 }

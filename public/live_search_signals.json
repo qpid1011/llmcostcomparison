@@ -1,0 +1,209 @@
+{
+  "site": "LLMCostComparison.com",
+  "updated_at_utc": "2026-11-25 02:47 UTC",
+  "iso_week": "2026-W48",
+  "total_signals_collected": 94,
+  "active_subpages_count": 8,
+  "newly_promoted_this_run": [
+    {
+      "slug": "mistral-api-pricing",
+      "iso_week": "2026-W48",
+      "promoted_at_utc": "2026-11-25 02:47 UTC",
+      "trigger_query": "mistral api pricing models",
+      "trigger_score": 601,
+      "trigger_source": "google_us_autocomplete",
+      "live_models_verified": 12
+    },
+    {
+      "slug": "claude-api-pricing",
+      "iso_week": "2026-W48",
+      "promoted_at_utc": "2026-11-25 02:47 UTC",
+      "trigger_query": "claude api pricing vs subscription",
+      "trigger_score": 601,
+      "trigger_source": "google_us_autocomplete",
+      "live_models_verified": 10
+    }
+  ],
+  "top_live_queries": [
+    {
+      "query": "llm cost comparison",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "deepseek api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "qwen api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "gemma api key",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "token cost claude",
+      "score": 1251,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llm cost per task",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm api pricing comparison",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llm api pricing"
+    },
+    {
+      "query": "deepseek api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "llama api key",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "qwen api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "gemma api pricing",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "token cost calculator",
+      "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llama api pricing",
+      "score": 950,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "qwen api free",
+      "score": 950,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "llm cost per token",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "token cost ai",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llama api key free",
+      "score": 701,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "llm cost calculator",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llama api free",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    },
+    {
+      "query": "gemma api text encode comfyui",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "gemma api"
+    },
+    {
+      "query": "llm cost comparison chart",
+      "score": 650,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm cost vs performance chart",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm cost optimization",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm api pricing comparison 2026",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm api pricing"
+    },
+    {
+      "query": "claude api pricing vs subscription",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "claude api pricing"
+    },
+    {
+      "query": "mistral api pricing models",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "mistral api pricing"
+    },
+    {
+      "query": "groq api pricing free",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "groq api pricing"
+    },
+    {
+      "query": "together ai pricing models",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "together ai pricing"
+    },
+    {
+      "query": "deepseek api cost",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "llama api documentation",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llama api"
+    }
+  ]
+}

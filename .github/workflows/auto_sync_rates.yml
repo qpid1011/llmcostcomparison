@@ -27,6 +27,7 @@ jobs:
       - name: Fetch live multi-provider LLM token costs, daily history & programmatic SEO pages
         run: |
           python3 scripts/sync_llm_costs.py
+          python3 scripts/discover_seo_queries.py
           python3 scripts/prerender_seo.py
           python3 scripts/build_seo_pages.py
       - name: Commit updated llm_costs.json, SSR index.html, SEO subpages, sitemap & history archive
