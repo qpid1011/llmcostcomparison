@@ -1,6 +1,6 @@
 {
   "site": "LLMCostComparison.com",
-  "updated_at_utc": "2026-11-26 21:45 UTC",
+  "updated_at_utc": "2026-11-27 08:50 UTC",
   "iso_week": "2026-W48",
   "total_signals_collected": 94,
   "active_subpages_count": 8,
@@ -80,9 +80,15 @@
     },
     {
       "query": "qwen api free",
-      "score": 850,
+      "score": 1000,
       "source": "google_us_autocomplete",
       "seed": "qwen api"
+    },
+    {
+      "query": "llm cost per token",
+      "score": 900,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
     },
     {
       "query": "gemma api cost",
@@ -97,28 +103,40 @@
       "seed": "llama api"
     },
     {
-      "query": "token cost ai",
-      "score": 800,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "llm cost per token",
+      "query": "llm cost calculator",
       "score": 750,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
     },
     {
       "query": "qwen api key free",
-      "score": 650,
+      "score": 750,
       "source": "google_us_autocomplete",
       "seed": "qwen api"
     },
     {
-      "query": "llm cost calculator",
-      "score": 602,
+      "query": "token cost ai",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llm cost vs performance",
+      "score": 700,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
+    },
+    {
+      "query": "llm cost comparison chart",
+      "score": 650,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "deepseek api cost",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
     },
     {
       "query": "llm cost vs performance chart",
@@ -157,7 +175,7 @@
       "seed": "together ai pricing"
     },
     {
-      "query": "deepseek api cost",
+      "query": "deepseek api login",
       "score": 601,
       "source": "google_us_autocomplete",
       "seed": "deepseek api"
@@ -167,24 +185,6 @@
       "score": 601,
       "source": "google_us_autocomplete",
       "seed": "llama api"
-    },
-    {
-      "query": "qwen api platform",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "qwen api"
-    },
-    {
-      "query": "gemma api key free",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "gemma api"
-    },
-    {
-      "query": "token cost chatgpt",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
     }
   ]
 }

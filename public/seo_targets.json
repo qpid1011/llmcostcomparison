@@ -216,9 +216,15 @@
     },
     {
       "query": "qwen api free",
-      "score": 850,
+      "score": 1000,
       "source": "google_us_autocomplete",
       "seed": "qwen api"
+    },
+    {
+      "query": "llm cost per token",
+      "score": 900,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
     },
     {
       "query": "gemma api cost",
@@ -233,28 +239,40 @@
       "seed": "llama api"
     },
     {
-      "query": "token cost ai",
-      "score": 800,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "llm cost per token",
+      "query": "llm cost calculator",
       "score": 750,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
     },
     {
       "query": "qwen api key free",
-      "score": 650,
+      "score": 750,
       "source": "google_us_autocomplete",
       "seed": "qwen api"
     },
     {
-      "query": "llm cost calculator",
-      "score": 602,
+      "query": "token cost ai",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llm cost vs performance",
+      "score": 700,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
+    },
+    {
+      "query": "llm cost comparison chart",
+      "score": 650,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "deepseek api cost",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
     },
     {
       "query": "llm cost vs performance chart",
@@ -273,24 +291,6 @@
       "score": 601,
       "source": "google_us_autocomplete",
       "seed": "claude api pricing"
-    },
-    {
-      "query": "mistral api pricing models",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "mistral api pricing"
-    },
-    {
-      "query": "groq api pricing free",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "groq api pricing"
-    },
-    {
-      "query": "together ai pricing models",
-      "score": 601,
-      "source": "google_us_autocomplete",
-      "seed": "together ai pricing"
     }
   ]
 }
