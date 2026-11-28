@@ -143,55 +143,13 @@
   ],
   "observed_gsc_queries": [
     {
-      "query": "deepseek api key",
-      "score": 1254,
-      "source": "google_us_autocomplete",
-      "seed": "deepseek api"
-    },
-    {
-      "query": "token cost claude",
-      "score": 1254,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "deepseek api pricing",
-      "score": 1253,
-      "source": "google_us_autocomplete",
-      "seed": "deepseek api"
-    },
-    {
-      "query": "token cost calculator",
-      "score": 1253,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
       "query": "llm cost comparison",
-      "score": 1252,
-      "source": "google_us_autocomplete",
-      "seed": "llm cost"
-    },
-    {
-      "query": "deepseek api platform",
-      "score": 1252,
-      "source": "google_us_autocomplete",
-      "seed": "deepseek api"
-    },
-    {
-      "query": "token cost anthropic",
-      "score": 1252,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "llm cost per task",
       "score": 1251,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
     },
     {
-      "query": "deepseek api cost",
+      "query": "deepseek api key",
       "score": 1251,
       "source": "google_us_autocomplete",
       "seed": "deepseek api"
@@ -203,13 +161,7 @@
       "seed": "qwen api"
     },
     {
-      "query": "token cost over time",
-      "score": 1251,
-      "source": "google_us_autocomplete",
-      "seed": "token cost"
-    },
-    {
-      "query": "llm cost vs performance chart",
+      "query": "llm cost per task",
       "score": 1250,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
@@ -221,7 +173,7 @@
       "seed": "llm api pricing"
     },
     {
-      "query": "deepseek api login",
+      "query": "deepseek api pricing",
       "score": 1250,
       "source": "google_us_autocomplete",
       "seed": "deepseek api"
@@ -245,8 +197,14 @@
       "seed": "gemma api"
     },
     {
-      "query": "token cost trend",
+      "query": "token cost claude",
       "score": 1250,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "token cost calculator",
+      "score": 1200,
       "source": "google_us_autocomplete",
       "seed": "token cost"
     },
@@ -275,12 +233,6 @@
       "seed": "gemma api"
     },
     {
-      "query": "deepseek api doc",
-      "score": 800,
-      "source": "google_us_autocomplete",
-      "seed": "deepseek api"
-    },
-    {
       "query": "llama api key free",
       "score": 800,
       "source": "google_us_autocomplete",
@@ -291,6 +243,54 @@
       "score": 750,
       "source": "google_us_autocomplete",
       "seed": "llm cost"
+    },
+    {
+      "query": "qwen api key free",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "qwen api"
+    },
+    {
+      "query": "token cost ai",
+      "score": 750,
+      "source": "google_us_autocomplete",
+      "seed": "token cost"
+    },
+    {
+      "query": "llm cost vs performance",
+      "score": 700,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm cost comparison chart",
+      "score": 650,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "deepseek api cost",
+      "score": 602,
+      "source": "google_us_autocomplete",
+      "seed": "deepseek api"
+    },
+    {
+      "query": "llm cost vs performance chart",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm cost"
+    },
+    {
+      "query": "llm api pricing calculator",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "llm api pricing"
+    },
+    {
+      "query": "claude api pricing vs subscription",
+      "score": 601,
+      "source": "google_us_autocomplete",
+      "seed": "claude api pricing"
     }
   ]
 }
